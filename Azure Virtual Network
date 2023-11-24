@@ -1,0 +1,16 @@
+Create Azure Virtual Network using POWERSHELL Commands
+
+create resoursegroup
+
+PS /home/other> $name = "RS-GROUP"     
+PS /home/other> $location = "West US 2"
+PS /home/other> new-azResourceGroup -Name $name -Location $location  
+
+create virtuil network
+
+PS /home/other> $NET = new-azvirtualNetwork -Name 'VNetwork' -ResourceGroupName $name -Location $location -AddressPrefix '192.168.0.0/24'
+
+create Network-Subnet
+
+PS /home/other> add-AzVirtualNetworkSubnetConfig -Name 'VSubnet' -AddressPrefix '192.168.0.0/26' -VirtualNetwork $NET        
+PS /home/other> set-AzVirtualNetwork -VirtualNetwork $NET
